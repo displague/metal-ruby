@@ -1,12 +1,16 @@
 .PHONY: all gen patch fetch
 
-# https://github.com/go-swagger/go-swagger/releases/latest
 SPEC_URL:=https://api.equinix.com/metal/v1/api-docs
-SPEC_FETCHED_FILE:=equinix-metal.fetched.json
-SPEC_PATCHED_FILE:=equinix-metal.patched.json
-IMAGE=quay.io/goswagger/swagger
+SPEC_FETCHED_FILE:=fetched.openapi.yaml
+SPEC_PATCHED_FILE:=patched.openapi.yaml
+IMAGE=openapitools/openapi-generator-cli
+GIT_ORG=displague
+GIT_REPO=metal-python
+PACKAGE_NAME=metal
+# python-flask python-legacy python python-aiohttp python-blueplanet
+GENERATOR=python
 
-SWAGGER=docker run --rm --env GOPATH=/go -v $(CURDIR):/go/src -w /go/src ${IMAGE}
+SWAGGER=docker run --rm -v $(CURDIR):/local ${IMAGE}
 
 all: pull fetch patch gen
 
@@ -20,17 +24,17 @@ patch:
 	# patch is idempotent, always starting with the fetched
 	# fetched file to create the patched file.
 	ARGS="-o ${SPEC_PATCHED_FILE} ${SPEC_FETCHED_FILE}"; \
-	for diff in $(shell find patches -name \*.patch | sort -n); do \
+	for diff in $(shell find patches/*.patch | sort -n); do \
 		patch --no-backup-if-mismatch -N -t $$ARGS $$diff; \
 		ARGS=${SPEC_PATCHED_FILE}; \
 	done
-	find ${SPEC_PATCHED_FILE} -empty -exec cp ${SPEC_FETCHED_FILE} ${SPEC_PATCHED_FILE} \;
 
 gen:
-	${SWAGGER} generate client \
+	${SWAGGER} generate -g ${GENERATOR} \
+		--package-name ${PACKAGE_NAME} \
 		--model-package types \
-		--additional-initialism bgp \
-		--additional-initialism vpn \
-		--additional-initialism vlan \
-		--additional-initialism vlans \
-		-f ${SPEC_PATCHED_FILE}
+		--api-package models \
+		--git-user-id ${GIT_ORG} \
+		--git-repo-id ${GIT_REPO} \
+		-o /local/${PACKAGE_NAME} \
+		-i /local/${SPEC_PATCHED_FILE}
