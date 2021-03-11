@@ -36,5 +36,5 @@ gen:
 		--api-package models \
 		--git-user-id ${GIT_ORG} \
 		--git-repo-id ${GIT_REPO} \
-		-o /local/${PACKAGE_NAME} \
+		-o /local/ \
 		-i /local/${SPEC_PATCHED_FILE}

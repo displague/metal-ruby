@@ -13499,6 +13499,23 @@
         }
       }
     },
+    "Staff::FacilityLittle": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "metro": {
+          "$ref": "#/definitions/Staff::MetroLittle"
+        }
+      }
+    },
     "Staff::FacilityRoom": {
       "properties": {
         "id": {
@@ -13521,46 +13538,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Staff::Cage"
-          }
-        }
-      }
-    },
-    "Staff::FacilityLittle": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "name": {
-          "type": "string"
-        },
-        "code": {
-          "type": "string"
-        },
-        "metro": {
-          "$ref": "#/definitions/Staff::MetroLittle"
-        }
-      }
-    },
-    "Staff::Cage": {
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
-        },
-        "name": {
-          "type": "string"
-        },
-        "code": {
-          "type": "string"
-        },
-        "facility_room": {
-          "$ref": "#/definitions/Staff::FacilityRoom"
-        },
-        "rows": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Staff::Row"
           }
         }
       }
@@ -13591,6 +13568,29 @@
         },
         "coordinates": {
           "type": "object"
+        }
+      }
+    },
+    "Staff::Cage": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "facility_room": {
+          "$ref": "#/definitions/Staff::FacilityRoom"
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Staff::Row"
+          }
         }
       }
     },
