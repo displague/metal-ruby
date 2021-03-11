@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.device_update_input import DeviceUpdateInput
-
+from metal.types.device_update_input import DeviceUpdateInput  # noqa: E501
+from metal.rest import ApiException
 
 class TestDeviceUpdateInput(unittest.TestCase):
     """DeviceUpdateInput unit test stubs"""
@@ -25,12 +29,35 @@ class TestDeviceUpdateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test DeviceUpdateInput
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.device_update_input.DeviceUpdateInput()  # noqa: E501
+        if include_optional :
+            return DeviceUpdateInput(
+                hostname = '', 
+                description = '', 
+                billing_cycle = '', 
+                userdata = '', 
+                locked = True, 
+                tags = [
+                    ''
+                    ], 
+                always_pxe = True, 
+                ipxe_script_url = '', 
+                spot_instance = True, 
+                customdata = None
+            )
+        else :
+            return DeviceUpdateInput(
+        )
+
     def testDeviceUpdateInput(self):
         """Test DeviceUpdateInput"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeviceUpdateInput()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

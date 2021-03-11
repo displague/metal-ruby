@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.capacity_level_per_baremetal import CapacityLevelPerBaremetal
-globals()['CapacityLevelPerBaremetal'] = CapacityLevelPerBaremetal
-from metal.model.capacity_per_new_facility import CapacityPerNewFacility
-
+from metal.types.capacity_per_new_facility import CapacityPerNewFacility  # noqa: E501
+from metal.rest import ApiException
 
 class TestCapacityPerNewFacility(unittest.TestCase):
     """CapacityPerNewFacility unit test stubs"""
@@ -27,12 +29,25 @@ class TestCapacityPerNewFacility(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test CapacityPerNewFacility
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.capacity_per_new_facility.CapacityPerNewFacility()  # noqa: E501
+        if include_optional :
+            return CapacityPerNewFacility(
+                baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                    level = '', )
+            )
+        else :
+            return CapacityPerNewFacility(
+        )
+
     def testCapacityPerNewFacility(self):
         """Test CapacityPerNewFacility"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CapacityPerNewFacility()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.event_type import EventType
-globals()['EventType'] = EventType
-from metal.model.event_type_list import EventTypeList
-
+from metal.types.event_type_list import EventTypeList  # noqa: E501
+from metal.rest import ApiException
 
 class TestEventTypeList(unittest.TestCase):
     """EventTypeList unit test stubs"""
@@ -27,12 +29,30 @@ class TestEventTypeList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test EventTypeList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.event_type_list.EventTypeList()  # noqa: E501
+        if include_optional :
+            return EventTypeList(
+                event_types = [
+                    metal.models.event_type.EventType(
+                        group = '', 
+                        events = [
+                            ''
+                            ], )
+                    ]
+            )
+        else :
+            return EventTypeList(
+        )
+
     def testEventTypeList(self):
         """Test EventTypeList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = EventTypeList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

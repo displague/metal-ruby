@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,16 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.capacity_per_facility import CapacityPerFacility
-from metal.model.capacity_per_new_facility import CapacityPerNewFacility
-globals()['CapacityPerFacility'] = CapacityPerFacility
-globals()['CapacityPerNewFacility'] = CapacityPerNewFacility
-from metal.model.capacity_report import CapacityReport
-
+from metal.types.capacity_report import CapacityReport  # noqa: E501
+from metal.rest import ApiException
 
 class TestCapacityReport(unittest.TestCase):
     """CapacityReport unit test stubs"""
@@ -29,12 +29,129 @@ class TestCapacityReport(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test CapacityReport
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.capacity_report.CapacityReport()  # noqa: E501
+        if include_optional :
+            return CapacityReport(
+                ams1 = metal.models.capacity_per_facility.CapacityPerFacility(
+                    baremetal_2a = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_2a2 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_1 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_3 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    c2/medium/x86 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_2 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    m2/xlarge/x86 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_s = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_0 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                atl1 = metal.models.capacity_per_new_facility.CapacityPerNewFacility(
+                    baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                dfw1 = metal.models.capacity_per_new_facility.CapacityPerNewFacility(
+                    baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                ewr1 = metal.models.capacity_per_facility.CapacityPerFacility(
+                    baremetal_2a = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_2a2 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_1 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_3 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    c2/medium/x86 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_2 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    m2/xlarge/x86 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_s = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_0 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                fra1 = metal.models.capacity_per_new_facility.CapacityPerNewFacility(
+                    baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                iad1 = metal.models.capacity_per_new_facility.CapacityPerNewFacility(
+                    baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                lax1 = metal.models.capacity_per_new_facility.CapacityPerNewFacility(
+                    baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                nrt1 = metal.models.capacity_per_facility.CapacityPerFacility(
+                    baremetal_2a = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_2a2 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_1 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_3 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    c2/medium/x86 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_2 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    m2/xlarge/x86 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_s = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_0 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                ord1 = metal.models.capacity_per_new_facility.CapacityPerNewFacility(
+                    baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                sea1 = metal.models.capacity_per_new_facility.CapacityPerNewFacility(
+                    baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                sin1 = metal.models.capacity_per_new_facility.CapacityPerNewFacility(
+                    baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                sjc1 = metal.models.capacity_per_facility.CapacityPerFacility(
+                    baremetal_2a = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_2a2 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_1 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_3 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    c2/medium/x86 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_2 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    m2/xlarge/x86 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_s = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), 
+                    baremetal_0 = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                syd1 = metal.models.capacity_per_new_facility.CapacityPerNewFacility(
+                    baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), ), 
+                yyz1 = metal.models.capacity_per_new_facility.CapacityPerNewFacility(
+                    baremetal_1e = metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        level = '', ), )
+            )
+        else :
+            return CapacityReport(
+        )
+
     def testCapacityReport(self):
         """Test CapacityReport"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CapacityReport()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

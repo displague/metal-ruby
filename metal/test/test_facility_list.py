@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.facility import Facility
-globals()['Facility'] = Facility
-from metal.model.facility_list import FacilityList
-
+from metal.types.facility_list import FacilityList  # noqa: E501
+from metal.rest import ApiException
 
 class TestFacilityList(unittest.TestCase):
     """FacilityList unit test stubs"""
@@ -27,12 +29,42 @@ class TestFacilityList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test FacilityList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.facility_list.FacilityList()  # noqa: E501
+        if include_optional :
+            return FacilityList(
+                facilities = [
+                    metal.models.facility.Facility(
+                        id = '', 
+                        name = '', 
+                        code = '', 
+                        features = [
+                            ''
+                            ], 
+                        address = metal.models.address.Address(
+                            address = '', 
+                            address2 = '', 
+                            city = '', 
+                            state = '', 
+                            zip_code = '', 
+                            country = '', 
+                            coordinates = metal.models.coordinates.Coordinates(
+                                latitude = '', 
+                                longitude = '', ), ), )
+                    ]
+            )
+        else :
+            return FacilityList(
+        )
+
     def testFacilityList(self):
         """Test FacilityList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = FacilityList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.ip_reservation_request_input import IPReservationRequestInput
-
+from metal.types.ip_reservation_request_input import IPReservationRequestInput  # noqa: E501
+from metal.rest import ApiException
 
 class TestIPReservationRequestInput(unittest.TestCase):
     """IPReservationRequestInput unit test stubs"""
@@ -25,12 +29,35 @@ class TestIPReservationRequestInput(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test IPReservationRequestInput
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.ip_reservation_request_input.IPReservationRequestInput()  # noqa: E501
+        if include_optional :
+            return IPReservationRequestInput(
+                type = '', 
+                quantity = 56, 
+                comments = '', 
+                facility = '', 
+                customdata = None, 
+                tags = [
+                    ''
+                    ], 
+                details = '', 
+                fail_on_approval_required = True
+            )
+        else :
+            return IPReservationRequestInput(
+                type = '',
+                quantity = 56,
+        )
+
     def testIPReservationRequestInput(self):
         """Test IPReservationRequestInput"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = IPReservationRequestInput()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

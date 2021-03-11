@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.plan_version import PlanVersion
-
+from metal.types.plan_version import PlanVersion  # noqa: E501
+from metal.rest import ApiException
 
 class TestPlanVersion(unittest.TestCase):
     """PlanVersion unit test stubs"""
@@ -25,12 +29,28 @@ class TestPlanVersion(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test PlanVersion
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.plan_version.PlanVersion()  # noqa: E501
+        if include_optional :
+            return PlanVersion(
+                id = '', 
+                slug = '', 
+                name = '', 
+                specs = None, 
+                line = ''
+            )
+        else :
+            return PlanVersion(
+        )
+
     def testPlanVersion(self):
         """Test PlanVersion"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = PlanVersion()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

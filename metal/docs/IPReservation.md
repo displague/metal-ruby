@@ -14,12 +14,12 @@ Name | Type | Description | Notes
 **manageable** | **bool** |  | [optional] 
 **addon** | **bool** |  | [optional] 
 **bill** | **bool** |  | [optional] 
-**assignments** | [**[IPAssignment]**](IPAssignment.md) |  | [optional] 
+**assignments** | [**list[IPAssignment]**](IPAssignment.md) |  | [optional] 
 **network** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **facility** | [**Facility**](Facility.md) |  | [optional] 
 **href** | **str** |  | [optional] 
-**tags** | **[str]** |  | [optional] 
+**tags** | **list[str]** |  | [optional] 
 **state** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

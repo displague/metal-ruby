@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,18 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.bgp_session import BgpSession
-from metal.model.global_bgp_range import GlobalBgpRange
-from metal.model.href import Href
-globals()['BgpSession'] = BgpSession
-globals()['GlobalBgpRange'] = GlobalBgpRange
-globals()['Href'] = Href
-from metal.model.bgp_config import BgpConfig
-
+from metal.types.bgp_config import BgpConfig  # noqa: E501
+from metal.rest import ApiException
 
 class TestBgpConfig(unittest.TestCase):
     """BgpConfig unit test stubs"""
@@ -31,12 +29,55 @@ class TestBgpConfig(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test BgpConfig
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.bgp_config.BgpConfig()  # noqa: E501
+        if include_optional :
+            return BgpConfig(
+                id = '', 
+                status = 'requested', 
+                deployment_type = 'global', 
+                asn = 56, 
+                route_object = '', 
+                md5 = '', 
+                max_prefix = 56, 
+                project = metal.models.href.Href(
+                    href = '', ), 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                requested_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                sessions = [
+                    metal.models.bgp_session.BgpSession(
+                        id = '', 
+                        status = '', 
+                        learned_routes = [
+                            ''
+                            ], 
+                        address_family = '', 
+                        device = metal.models.href.Href(
+                            href = '', ), 
+                        href = '', 
+                        default_route = True, )
+                    ], 
+                ranges = [
+                    metal.models.global_bgp_range.GlobalBgpRange(
+                        id = '', 
+                        address_family = 56, 
+                        range = '', 
+                        href = '', )
+                    ], 
+                href = ''
+            )
+        else :
+            return BgpConfig(
+        )
+
     def testBgpConfig(self):
         """Test BgpConfig"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = BgpConfig()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

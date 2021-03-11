@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.volume_attachment import VolumeAttachment
-globals()['VolumeAttachment'] = VolumeAttachment
-from metal.model.volume_attachment_list import VolumeAttachmentList
-
+from metal.types.volume_attachment_list import VolumeAttachmentList  # noqa: E501
+from metal.rest import ApiException
 
 class TestVolumeAttachmentList(unittest.TestCase):
     """VolumeAttachmentList unit test stubs"""
@@ -27,12 +29,33 @@ class TestVolumeAttachmentList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test VolumeAttachmentList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.volume_attachment_list.VolumeAttachmentList()  # noqa: E501
+        if include_optional :
+            return VolumeAttachmentList(
+                attachments = [
+                    metal.models.volume_attachment.VolumeAttachment(
+                        id = '', 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        volume = metal.models.href.Href(
+                            href = '', ), 
+                        device = metal.models.href.Href(
+                            href = '', ), 
+                        href = '', )
+                    ]
+            )
+        else :
+            return VolumeAttachmentList(
+        )
+
     def testVolumeAttachmentList(self):
         """Test VolumeAttachmentList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = VolumeAttachmentList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

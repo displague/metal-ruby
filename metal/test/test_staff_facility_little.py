@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.staff_metro_little import StaffMetroLittle
-globals()['StaffMetroLittle'] = StaffMetroLittle
-from metal.model.staff_facility_little import StaffFacilityLittle
-
+from metal.types.staff_facility_little import StaffFacilityLittle  # noqa: E501
+from metal.rest import ApiException
 
 class TestStaffFacilityLittle(unittest.TestCase):
     """StaffFacilityLittle unit test stubs"""
@@ -27,12 +29,33 @@ class TestStaffFacilityLittle(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test StaffFacilityLittle
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.staff_facility_little.StaffFacilityLittle()  # noqa: E501
+        if include_optional :
+            return StaffFacilityLittle(
+                id = '', 
+                name = '', 
+                code = '', 
+                metro = metal.models.staff::metro_little.Staff::MetroLittle(
+                    id = '', 
+                    name = '', 
+                    code = '', 
+                    features = [
+                        ''
+                        ], )
+            )
+        else :
+            return StaffFacilityLittle(
+        )
+
     def testStaffFacilityLittle(self):
         """Test StaffFacilityLittle"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = StaffFacilityLittle()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

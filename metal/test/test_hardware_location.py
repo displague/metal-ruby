@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.hardware_location import HardwareLocation
-
+from metal.types.hardware_location import HardwareLocation  # noqa: E501
+from metal.rest import ApiException
 
 class TestHardwareLocation(unittest.TestCase):
     """HardwareLocation unit test stubs"""
@@ -25,12 +29,28 @@ class TestHardwareLocation(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test HardwareLocation
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.hardware_location.HardwareLocation()  # noqa: E501
+        if include_optional :
+            return HardwareLocation(
+                cage = '', 
+                facility = '', 
+                rack = '', 
+                row = '', 
+                switch = ''
+            )
+        else :
+            return HardwareLocation(
+        )
+
     def testHardwareLocation(self):
         """Test HardwareLocation"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = HardwareLocation()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

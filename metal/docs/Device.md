@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **hostname** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **state** | **str** |  | [optional] 
-**tags** | **[str]** |  | [optional] 
+**tags** | **list[str]** |  | [optional] 
 **image_url** | **str** |  | [optional] 
 **billing_cycle** | **str** |  | [optional] 
 **user** | **str** |  | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **spot_instance** | **bool** |  | [optional] 
 **spot_price_max** | **float** |  | [optional] 
 **termination_time** | **datetime** |  | [optional] 
-**customdata** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**customdata** | **object** |  | [optional] 
 **provisioning_percentage** | **float** |  | [optional] 
 **operating_system** | [**OperatingSystem**](OperatingSystem.md) |  | [optional] 
 **always_pxe** | **bool** |  | [optional] 
@@ -34,11 +34,11 @@ Name | Type | Description | Notes
 **href** | **str** |  | [optional] 
 **project** | [**Href**](Href.md) |  | [optional] 
 **project_lite** | [**Href**](Href.md) |  | [optional] 
-**volumes** | [**[Href]**](Href.md) |  | [optional] 
+**volumes** | [**list[Href]**](Href.md) |  | [optional] 
 **hardware_reservation** | [**Href**](Href.md) |  | [optional] 
-**ssh_keys** | [**[Href]**](Href.md) |  | [optional] 
-**ip_addresses** | [**[IPAssignment]**](IPAssignment.md) |  | [optional] 
-**provisioning_events** | [**[Event]**](Event.md) |  | [optional] 
+**ssh_keys** | [**list[Href]**](Href.md) |  | [optional] 
+**ip_addresses** | [**list[IPAssignment]**](IPAssignment.md) |  | [optional] 
+**provisioning_events** | [**list[Event]**](Event.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **quantity** | **int** |  | 
 **comments** | **str** |  | [optional] 
 **facility** | **str** |  | [optional] 
-**customdata** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
-**tags** | **[str]** |  | [optional] 
+**customdata** | **object** |  | [optional] 
+**tags** | **list[str]** |  | [optional] 
 **details** | **str** |  | [optional] 
 **fail_on_approval_required** | **bool** |  | [optional] 
 

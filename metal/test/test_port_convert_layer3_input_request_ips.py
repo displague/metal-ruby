@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.port_convert_layer3_input_request_ips import PortConvertLayer3InputRequestIps
-
+from metal.types.port_convert_layer3_input_request_ips import PortConvertLayer3InputRequestIps  # noqa: E501
+from metal.rest import ApiException
 
 class TestPortConvertLayer3InputRequestIps(unittest.TestCase):
     """PortConvertLayer3InputRequestIps unit test stubs"""
@@ -25,12 +29,25 @@ class TestPortConvertLayer3InputRequestIps(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test PortConvertLayer3InputRequestIps
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.port_convert_layer3_input_request_ips.PortConvertLayer3InputRequestIps()  # noqa: E501
+        if include_optional :
+            return PortConvertLayer3InputRequestIps(
+                address_family = 56, 
+                public = True
+            )
+        else :
+            return PortConvertLayer3InputRequestIps(
+        )
+
     def testPortConvertLayer3InputRequestIps(self):
         """Test PortConvertLayer3InputRequestIps"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = PortConvertLayer3InputRequestIps()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

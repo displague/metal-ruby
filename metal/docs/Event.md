@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **state** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
 **body** | **str** |  | [optional] 
-**relationships** | [**[Href]**](Href.md) |  | [optional] 
+**relationships** | [**list[Href]**](Href.md) |  | [optional] 
 **interpolated** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **href** | **str** |  | [optional] 

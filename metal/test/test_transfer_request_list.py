@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.transfer_request import TransferRequest
-globals()['TransferRequest'] = TransferRequest
-from metal.model.transfer_request_list import TransferRequestList
-
+from metal.types.transfer_request_list import TransferRequestList  # noqa: E501
+from metal.rest import ApiException
 
 class TestTransferRequestList(unittest.TestCase):
     """TransferRequestList unit test stubs"""
@@ -27,12 +29,34 @@ class TestTransferRequestList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test TransferRequestList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.transfer_request_list.TransferRequestList()  # noqa: E501
+        if include_optional :
+            return TransferRequestList(
+                transfers = [
+                    metal.models.transfer_request.TransferRequest(
+                        id = '', 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        target_organization = metal.models.href.Href(
+                            href = '', ), 
+                        project = metal.models.href.Href(
+                            href = '', ), 
+                        href = '', )
+                    ]
+            )
+        else :
+            return TransferRequestList(
+        )
+
     def testTransferRequestList(self):
         """Test TransferRequestList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = TransferRequestList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

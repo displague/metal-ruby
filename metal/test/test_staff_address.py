@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.staff_address import StaffAddress
-
+from metal.types.staff_address import StaffAddress  # noqa: E501
+from metal.rest import ApiException
 
 class TestStaffAddress(unittest.TestCase):
     """StaffAddress unit test stubs"""
@@ -25,12 +29,31 @@ class TestStaffAddress(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test StaffAddress
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.staff_address.StaffAddress()  # noqa: E501
+        if include_optional :
+            return StaffAddress(
+                id = '', 
+                address = '', 
+                address2 = '', 
+                city = '', 
+                state = '', 
+                zip_code = '', 
+                country = '', 
+                coordinates = metal.models.coordinates.coordinates()
+            )
+        else :
+            return StaffAddress(
+        )
+
     def testStaffAddress(self):
         """Test StaffAddress"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = StaffAddress()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

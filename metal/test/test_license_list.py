@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.license import License
-globals()['License'] = License
-from metal.model.license_list import LicenseList
-
+from metal.types.license_list import LicenseList  # noqa: E501
+from metal.rest import ApiException
 
 class TestLicenseList(unittest.TestCase):
     """LicenseList unit test stubs"""
@@ -27,12 +29,34 @@ class TestLicenseList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test LicenseList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.license_list.LicenseList()  # noqa: E501
+        if include_optional :
+            return LicenseList(
+                licenses = [
+                    metal.models.license.License(
+                        id = '', 
+                        description = '', 
+                        license_key = '', 
+                        licensee_product = metal.models.href.Href(
+                            href = '', ), 
+                        size = 1.337, 
+                        project = metal.models.href.Href(
+                            href = '', ), )
+                    ]
+            )
+        else :
+            return LicenseList(
+        )
+
     def testLicenseList(self):
         """Test LicenseList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = LicenseList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

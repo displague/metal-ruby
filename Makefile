@@ -8,7 +8,7 @@ GIT_ORG=displague
 GIT_REPO=metal-python
 PACKAGE_NAME=metal
 # python-flask python-legacy python python-aiohttp python-blueplanet
-GENERATOR=python
+GENERATOR=python-legacy
 
 SWAGGER=docker run --rm -v $(CURDIR):/local ${IMAGE}
 

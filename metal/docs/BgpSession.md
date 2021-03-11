@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] 
 **status** | **str** |  | [optional] 
-**learned_routes** | **[str]** |  | [optional] 
+**learned_routes** | **list[str]** |  | [optional] 
 **address_family** | **str** |  | [optional] 
 **device** | [**Href**](Href.md) |  | [optional] 
 **href** | **str** |  | [optional] 

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.href import Href
-globals()['Href'] = Href
-from metal.model.batch import Batch
-
+from metal.types.batch import Batch  # noqa: E501
+from metal.rest import ApiException
 
 class TestBatch(unittest.TestCase):
     """Batch unit test stubs"""
@@ -27,12 +29,37 @@ class TestBatch(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test Batch
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.batch.Batch()  # noqa: E501
+        if include_optional :
+            return Batch(
+                id = '', 
+                error_messages = [
+                    ''
+                    ], 
+                quantity = 56, 
+                state = '', 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                devices = [
+                    metal.models.href.Href(
+                        href = '', )
+                    ], 
+                project = metal.models.href.Href(
+                    href = '', )
+            )
+        else :
+            return Batch(
+        )
+
     def testBatch(self):
         """Test Batch"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Batch()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

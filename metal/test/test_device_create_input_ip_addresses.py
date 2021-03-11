@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.device_create_input_ip_addresses import DeviceCreateInputIpAddresses
-
+from metal.types.device_create_input_ip_addresses import DeviceCreateInputIpAddresses  # noqa: E501
+from metal.rest import ApiException
 
 class TestDeviceCreateInputIpAddresses(unittest.TestCase):
     """DeviceCreateInputIpAddresses unit test stubs"""
@@ -25,12 +29,29 @@ class TestDeviceCreateInputIpAddresses(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test DeviceCreateInputIpAddresses
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.device_create_input_ip_addresses.DeviceCreateInputIpAddresses()  # noqa: E501
+        if include_optional :
+            return DeviceCreateInputIpAddresses(
+                address_family = 4.0, 
+                public = False, 
+                cidr = 28.0, 
+                ip_reservations = [
+                    ''
+                    ]
+            )
+        else :
+            return DeviceCreateInputIpAddresses(
+        )
+
     def testDeviceCreateInputIpAddresses(self):
         """Test DeviceCreateInputIpAddresses"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeviceCreateInputIpAddresses()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.interconnection_create_input import InterconnectionCreateInput
-
+from metal.types.interconnection_create_input import InterconnectionCreateInput  # noqa: E501
+from metal.rest import ApiException
 
 class TestInterconnectionCreateInput(unittest.TestCase):
     """InterconnectionCreateInput unit test stubs"""
@@ -25,12 +29,38 @@ class TestInterconnectionCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test InterconnectionCreateInput
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.interconnection_create_input.InterconnectionCreateInput()  # noqa: E501
+        if include_optional :
+            return InterconnectionCreateInput(
+                name = '', 
+                description = '', 
+                facility = '', 
+                type = '', 
+                redundancy = '', 
+                contact_email = '', 
+                project = '', 
+                speed = '', 
+                tags = [
+                    ''
+                    ]
+            )
+        else :
+            return InterconnectionCreateInput(
+                name = '',
+                facility = '',
+                type = '',
+                redundancy = '',
+        )
+
     def testInterconnectionCreateInput(self):
         """Test InterconnectionCreateInput"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = InterconnectionCreateInput()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.project_update_input import ProjectUpdateInput
-
+from metal.types.project_update_input import ProjectUpdateInput  # noqa: E501
+from metal.rest import ApiException
 
 class TestProjectUpdateInput(unittest.TestCase):
     """ProjectUpdateInput unit test stubs"""
@@ -25,12 +29,27 @@ class TestProjectUpdateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test ProjectUpdateInput
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.project_update_input.ProjectUpdateInput()  # noqa: E501
+        if include_optional :
+            return ProjectUpdateInput(
+                name = '', 
+                payment_method_id = '', 
+                backend_transfer_enabled = True, 
+                customdata = None
+            )
+        else :
+            return ProjectUpdateInput(
+        )
+
     def testProjectUpdateInput(self):
         """Test ProjectUpdateInput"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ProjectUpdateInput()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

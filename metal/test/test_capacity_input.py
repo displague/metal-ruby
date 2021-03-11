@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.server_info import ServerInfo
-globals()['ServerInfo'] = ServerInfo
-from metal.model.capacity_input import CapacityInput
-
+from metal.types.capacity_input import CapacityInput  # noqa: E501
+from metal.rest import ApiException
 
 class TestCapacityInput(unittest.TestCase):
     """CapacityInput unit test stubs"""
@@ -27,12 +29,29 @@ class TestCapacityInput(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test CapacityInput
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.capacity_input.CapacityInput()  # noqa: E501
+        if include_optional :
+            return CapacityInput(
+                servers = [
+                    metal.models.server_info.ServerInfo(
+                        facility = '', 
+                        plan = '', 
+                        quantity = '', )
+                    ]
+            )
+        else :
+            return CapacityInput(
+        )
+
     def testCapacityInput(self):
         """Test CapacityInput"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CapacityInput()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

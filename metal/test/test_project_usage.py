@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.project_usage import ProjectUsage
-
+from metal.types.project_usage import ProjectUsage  # noqa: E501
+from metal.rest import ApiException
 
 class TestProjectUsage(unittest.TestCase):
     """ProjectUsage unit test stubs"""
@@ -25,12 +29,32 @@ class TestProjectUsage(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test ProjectUsage
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.project_usage.ProjectUsage()  # noqa: E501
+        if include_optional :
+            return ProjectUsage(
+                facility = '', 
+                type = '', 
+                name = '', 
+                plan = '', 
+                plan_version = '', 
+                quantity = '', 
+                unit = '', 
+                price = '', 
+                total = ''
+            )
+        else :
+            return ProjectUsage(
+        )
+
     def testProjectUsage(self):
         """Test ProjectUsage"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ProjectUsage()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

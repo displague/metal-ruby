@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.href import Href
-globals()['Href'] = Href
-from metal.model.plan import Plan
-
+from metal.types.plan import Plan  # noqa: E501
+from metal.rest import ApiException
 
 class TestPlan(unittest.TestCase):
     """Plan unit test stubs"""
@@ -27,12 +29,36 @@ class TestPlan(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test Plan
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.plan.Plan()  # noqa: E501
+        if include_optional :
+            return Plan(
+                id = '', 
+                slug = '', 
+                name = '', 
+                description = '', 
+                line = '', 
+                specs = metal.models.specs.specs(), 
+                pricing = metal.models.pricing.pricing(), 
+                legacy = True, 
+                _class = '', 
+                available_in = [
+                    metal.models.href.Href(
+                        href = '', )
+                    ]
+            )
+        else :
+            return Plan(
+        )
+
     def testPlan(self):
         """Test Plan"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Plan()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

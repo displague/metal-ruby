@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.volume_attachment_input import VolumeAttachmentInput
-
+from metal.types.volume_attachment_input import VolumeAttachmentInput  # noqa: E501
+from metal.rest import ApiException
 
 class TestVolumeAttachmentInput(unittest.TestCase):
     """VolumeAttachmentInput unit test stubs"""
@@ -25,12 +29,25 @@ class TestVolumeAttachmentInput(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test VolumeAttachmentInput
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.volume_attachment_input.VolumeAttachmentInput()  # noqa: E501
+        if include_optional :
+            return VolumeAttachmentInput(
+                device_id = ''
+            )
+        else :
+            return VolumeAttachmentInput(
+                device_id = '',
+        )
+
     def testVolumeAttachmentInput(self):
         """Test VolumeAttachmentInput"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = VolumeAttachmentInput()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

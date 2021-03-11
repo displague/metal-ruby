@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,18 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.staff_facility_little import StaffFacilityLittle
-from metal.model.staff_metro_little import StaffMetroLittle
-from metal.model.staff_port import StaffPort
-globals()['StaffFacilityLittle'] = StaffFacilityLittle
-globals()['StaffMetroLittle'] = StaffMetroLittle
-globals()['StaffPort'] = StaffPort
-from metal.model.staff_ip_address import StaffIpAddress
-
+from metal.types.staff_ip_address import StaffIpAddress  # noqa: E501
+from metal.rest import ApiException
 
 class TestStaffIpAddress(unittest.TestCase):
     """StaffIpAddress unit test stubs"""
@@ -31,12 +29,65 @@ class TestStaffIpAddress(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test StaffIpAddress
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.staff_ip_address.StaffIpAddress()  # noqa: E501
+        if include_optional :
+            return StaffIpAddress(
+                id = '', 
+                network = '', 
+                address_family = 56, 
+                netmask = '', 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                details = '', 
+                public = True, 
+                management = True, 
+                manageable = True, 
+                enabled = True, 
+                created_by = '', 
+                global_ip = True, 
+                reservation = True, 
+                customdata = None, 
+                bill = True, 
+                tags = [
+                    ''
+                    ], 
+                address = '', 
+                gateway = '', 
+                cidr = 56, 
+                state = '', 
+                requested_quantity = 56, 
+                facility = metal.models.staff::facility_little.Staff::FacilityLittle(
+                    id = '', 
+                    name = '', 
+                    code = '', 
+                    metro = metal.models.staff::metro_little.Staff::MetroLittle(
+                        id = '', 
+                        name = '', 
+                        code = '', 
+                        features = [
+                            ''
+                            ], ), ), 
+                metro = metal.models.staff::metro_little.Staff::MetroLittle(
+                    id = '', 
+                    name = '', 
+                    code = '', 
+                    features = [
+                        ''
+                        ], ), 
+                interface = None
+            )
+        else :
+            return StaffIpAddress(
+        )
+
     def testStaffIpAddress(self):
         """Test StaffIpAddress"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = StaffIpAddress()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

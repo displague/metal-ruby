@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.spot_prices_per_baremetal import SpotPricesPerBaremetal
-
+from metal.types.spot_prices_per_baremetal import SpotPricesPerBaremetal  # noqa: E501
+from metal.rest import ApiException
 
 class TestSpotPricesPerBaremetal(unittest.TestCase):
     """SpotPricesPerBaremetal unit test stubs"""
@@ -25,12 +29,24 @@ class TestSpotPricesPerBaremetal(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test SpotPricesPerBaremetal
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal()  # noqa: E501
+        if include_optional :
+            return SpotPricesPerBaremetal(
+                price = 1.337
+            )
+        else :
+            return SpotPricesPerBaremetal(
+        )
+
     def testSpotPricesPerBaremetal(self):
         """Test SpotPricesPerBaremetal"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SpotPricesPerBaremetal()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.bgp_neighbor_data_routes_in import BgpNeighborDataRoutesIn
-
+from metal.types.bgp_neighbor_data_routes_in import BgpNeighborDataRoutesIn  # noqa: E501
+from metal.rest import ApiException
 
 class TestBgpNeighborDataRoutesIn(unittest.TestCase):
     """BgpNeighborDataRoutesIn unit test stubs"""
@@ -25,12 +29,25 @@ class TestBgpNeighborDataRoutesIn(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test BgpNeighborDataRoutesIn
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.bgp_neighbor_data_routes_in.BgpNeighborDataRoutesIn()  # noqa: E501
+        if include_optional :
+            return BgpNeighborDataRoutesIn(
+                route = '10.32.16.0/31', 
+                exact = True
+            )
+        else :
+            return BgpNeighborDataRoutesIn(
+        )
+
     def testBgpNeighborDataRoutesIn(self):
         """Test BgpNeighborDataRoutesIn"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = BgpNeighborDataRoutesIn()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

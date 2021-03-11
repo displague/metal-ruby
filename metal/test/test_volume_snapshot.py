@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.href import Href
-globals()['Href'] = Href
-from metal.model.volume_snapshot import VolumeSnapshot
-
+from metal.types.volume_snapshot import VolumeSnapshot  # noqa: E501
+from metal.rest import ApiException
 
 class TestVolumeSnapshot(unittest.TestCase):
     """VolumeSnapshot unit test stubs"""
@@ -27,12 +29,29 @@ class TestVolumeSnapshot(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test VolumeSnapshot
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.volume_snapshot.VolumeSnapshot()  # noqa: E501
+        if include_optional :
+            return VolumeSnapshot(
+                id = '', 
+                status = '', 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                volume = metal.models.href.Href(
+                    href = '', )
+            )
+        else :
+            return VolumeSnapshot(
+        )
+
     def testVolumeSnapshot(self):
         """Test VolumeSnapshot"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = VolumeSnapshot()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

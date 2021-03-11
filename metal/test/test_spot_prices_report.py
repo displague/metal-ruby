@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,16 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.spot_prices_per_facility import SpotPricesPerFacility
-from metal.model.spot_prices_per_new_facility import SpotPricesPerNewFacility
-globals()['SpotPricesPerFacility'] = SpotPricesPerFacility
-globals()['SpotPricesPerNewFacility'] = SpotPricesPerNewFacility
-from metal.model.spot_prices_report import SpotPricesReport
-
+from metal.types.spot_prices_report import SpotPricesReport  # noqa: E501
+from metal.rest import ApiException
 
 class TestSpotPricesReport(unittest.TestCase):
     """SpotPricesReport unit test stubs"""
@@ -29,12 +29,129 @@ class TestSpotPricesReport(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test SpotPricesReport
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.spot_prices_report.SpotPricesReport()  # noqa: E501
+        if include_optional :
+            return SpotPricesReport(
+                ams1 = metal.models.spot_prices_per_facility.SpotPricesPerFacility(
+                    baremetal_2a = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_2a2 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_1 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_3 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    c2/medium/x86 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_2 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    m2/xlarge/x86 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_s = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_0 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                atl1 = metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    baremetal_1e = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                dfw1 = metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    baremetal_1e = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                ewr1 = metal.models.spot_prices_per_facility.SpotPricesPerFacility(
+                    baremetal_2a = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_2a2 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_1 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_3 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    c2/medium/x86 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_2 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    m2/xlarge/x86 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_s = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_0 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                fra1 = metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    baremetal_1e = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                iad1 = metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    baremetal_1e = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                lax1 = metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    baremetal_1e = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                nrt1 = metal.models.spot_prices_per_facility.SpotPricesPerFacility(
+                    baremetal_2a = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_2a2 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_1 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_3 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    c2/medium/x86 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_2 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    m2/xlarge/x86 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_s = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_0 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                ord1 = metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    baremetal_1e = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                sea1 = metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    baremetal_1e = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                sin1 = metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    baremetal_1e = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                sjc1 = metal.models.spot_prices_per_facility.SpotPricesPerFacility(
+                    baremetal_2a = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_2a2 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_1 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_3 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    c2/medium/x86 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_2 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    m2/xlarge/x86 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_s = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), 
+                    baremetal_0 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                syd1 = metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    baremetal_1e = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), ), 
+                yyz1 = metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    baremetal_1e = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        price = 1.337, ), )
+            )
+        else :
+            return SpotPricesReport(
+        )
+
     def testSpotPricesReport(self):
         """Test SpotPricesReport"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SpotPricesReport()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.capacity_per_baremetal import CapacityPerBaremetal
-
+from metal.types.capacity_per_baremetal import CapacityPerBaremetal  # noqa: E501
+from metal.rest import ApiException
 
 class TestCapacityPerBaremetal(unittest.TestCase):
     """CapacityPerBaremetal unit test stubs"""
@@ -25,12 +29,28 @@ class TestCapacityPerBaremetal(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test CapacityPerBaremetal
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.capacity_per_baremetal.CapacityPerBaremetal()  # noqa: E501
+        if include_optional :
+            return CapacityPerBaremetal(
+                level = '', 
+                available_servers = 56, 
+                total_servers = 56, 
+                market_buffer_percentage = 56, 
+                market_floor_price = 1.337
+            )
+        else :
+            return CapacityPerBaremetal(
+        )
+
     def testCapacityPerBaremetal(self):
         """Test CapacityPerBaremetal"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CapacityPerBaremetal()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

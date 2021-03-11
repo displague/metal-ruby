@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.membership import Membership
-globals()['Membership'] = Membership
-from metal.model.invitation_list import InvitationList
-
+from metal.types.invitation_list import InvitationList  # noqa: E501
+from metal.rest import ApiException
 
 class TestInvitationList(unittest.TestCase):
     """InvitationList unit test stubs"""
@@ -27,12 +29,37 @@ class TestInvitationList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test InvitationList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.invitation_list.InvitationList()  # noqa: E501
+        if include_optional :
+            return InvitationList(
+                invitations = [
+                    metal.models.membership.Membership(
+                        id = '', 
+                        roles = [
+                            ''
+                            ], 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        project = metal.models.href.Href(
+                            href = '', ), 
+                        user = metal.models.href.Href(
+                            href = '', ), 
+                        href = '', )
+                    ]
+            )
+        else :
+            return InvitationList(
+        )
+
     def testInvitationList(self):
         """Test InvitationList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = InvitationList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

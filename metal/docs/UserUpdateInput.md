@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **phone_number** | **str** |  | [optional] 
 **timezone** | **str** |  | [optional] 
 **password** | **str** |  | [optional] 
-**avatar** | **file_type** |  | [optional] 
-**customdata** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**avatar** | **file** |  | [optional] 
+**customdata** | **object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

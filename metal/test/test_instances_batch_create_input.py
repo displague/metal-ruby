@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.instances_batch_create_input_batches import InstancesBatchCreateInputBatches
-globals()['InstancesBatchCreateInputBatches'] = InstancesBatchCreateInputBatches
-from metal.model.instances_batch_create_input import InstancesBatchCreateInput
-
+from metal.types.instances_batch_create_input import InstancesBatchCreateInput  # noqa: E501
+from metal.rest import ApiException
 
 class TestInstancesBatchCreateInput(unittest.TestCase):
     """InstancesBatchCreateInput unit test stubs"""
@@ -27,12 +29,60 @@ class TestInstancesBatchCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test InstancesBatchCreateInput
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.instances_batch_create_input.InstancesBatchCreateInput()  # noqa: E501
+        if include_optional :
+            return InstancesBatchCreateInput(
+                batches = [
+                    metal.models.instances_batch_create_input_batches.InstancesBatchCreateInput_batches(
+                        plan = '', 
+                        hostname = '', 
+                        hostnames = [
+                            ''
+                            ], 
+                        description = '', 
+                        billing_cycle = '', 
+                        operating_system = '', 
+                        always_pxe = True, 
+                        userdata = '', 
+                        locked = True, 
+                        termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        tags = [
+                            ''
+                            ], 
+                        project_ssh_keys = [
+                            ''
+                            ], 
+                        user_ssh_keys = [
+                            ''
+                            ], 
+                        features = [
+                            ''
+                            ], 
+                        customdata = metal.models.customdata.customdata(), 
+                        ip_addresses = [
+                            metal.models.instances_batch_create_input_ip_addresses.InstancesBatchCreateInput_ip_addresses(
+                                address_family = 4.0, 
+                                public = False, 
+                                cidr = 28.0, 
+                                ip_reservations = [
+                                    ''
+                                    ], )
+                            ], )
+                    ]
+            )
+        else :
+            return InstancesBatchCreateInput(
+        )
+
     def testInstancesBatchCreateInput(self):
         """Test InstancesBatchCreateInput"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = InstancesBatchCreateInput()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

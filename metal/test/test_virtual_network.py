@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.href import Href
-globals()['Href'] = Href
-from metal.model.virtual_network import VirtualNetwork
-
+from metal.types.virtual_network import VirtualNetwork  # noqa: E501
+from metal.rest import ApiException
 
 class TestVirtualNetwork(unittest.TestCase):
     """VirtualNetwork unit test stubs"""
@@ -27,12 +29,35 @@ class TestVirtualNetwork(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test VirtualNetwork
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.virtual_network.VirtualNetwork()  # noqa: E501
+        if include_optional :
+            return VirtualNetwork(
+                id = '', 
+                description = '', 
+                vxlan = 56, 
+                facility = metal.models.href.Href(
+                    href = '', ), 
+                instances = [
+                    metal.models.href.Href(
+                        href = '', )
+                    ], 
+                assigned_to = metal.models.href.Href(
+                    href = '', ), 
+                href = ''
+            )
+        else :
+            return VirtualNetwork(
+        )
+
     def testVirtualNetwork(self):
         """Test VirtualNetwork"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = VirtualNetwork()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

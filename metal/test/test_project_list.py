@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,16 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.meta import Meta
-from metal.model.project import Project
-globals()['Meta'] = Meta
-globals()['Project'] = Project
-from metal.model.project_list import ProjectList
-
+from metal.types.project_list import ProjectList  # noqa: E501
+from metal.rest import ApiException
 
 class TestProjectList(unittest.TestCase):
     """ProjectList unit test stubs"""
@@ -29,12 +29,73 @@ class TestProjectList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test ProjectList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.project_list.ProjectList()  # noqa: E501
+        if include_optional :
+            return ProjectList(
+                projects = [
+                    metal.models.project.Project(
+                        id = '', 
+                        name = '', 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        max_devices = metal.models.max_devices.max_devices(), 
+                        members = [
+                            metal.models.href.Href(
+                                href = '', )
+                            ], 
+                        memberships = [
+                            metal.models.href.Href(
+                                href = '', )
+                            ], 
+                        network_status = metal.models.network_status.network_status(), 
+                        invitations = [
+                            metal.models.href.Href(
+                                href = '', )
+                            ], 
+                        payment_method = metal.models.href.Href(
+                            href = '', ), 
+                        devices = [
+                            metal.models.href.Href(
+                                href = '', )
+                            ], 
+                        ssh_keys = [
+                            metal.models.href.Href(
+                                href = '', )
+                            ], 
+                        volumes = [
+                            metal.models.href.Href(
+                                href = '', )
+                            ], 
+                        bgp_config = metal.models.href.Href(
+                            href = '', ), 
+                        customdata = metal.models.customdata.customdata(), )
+                    ], 
+                meta = metal.models.meta.Meta(
+                    first = metal.models.href.Href(
+                        href = '', ), 
+                    previous = metal.models.href.Href(
+                        href = '', ), 
+                    self = metal.models.href.Href(
+                        href = '', ), 
+                    next = metal.models.href.Href(
+                        href = '', ), 
+                    last = metal.models.href.Href(
+                        href = '', ), 
+                    total = 56, )
+            )
+        else :
+            return ProjectList(
+        )
+
     def testProjectList(self):
         """Test ProjectList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ProjectList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

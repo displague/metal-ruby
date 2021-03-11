@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.email_input import EmailInput
-
+from metal.types.email_input import EmailInput  # noqa: E501
+from metal.rest import ApiException
 
 class TestEmailInput(unittest.TestCase):
     """EmailInput unit test stubs"""
@@ -25,12 +29,26 @@ class TestEmailInput(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test EmailInput
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.email_input.EmailInput()  # noqa: E501
+        if include_optional :
+            return EmailInput(
+                address = '', 
+                default = True
+            )
+        else :
+            return EmailInput(
+                address = '',
+        )
+
     def testEmailInput(self):
         """Test EmailInput"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = EmailInput()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

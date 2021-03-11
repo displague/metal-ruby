@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.spot_prices_per_baremetal import SpotPricesPerBaremetal
-globals()['SpotPricesPerBaremetal'] = SpotPricesPerBaremetal
-from metal.model.spot_prices_per_facility import SpotPricesPerFacility
-
+from metal.types.spot_prices_per_facility import SpotPricesPerFacility  # noqa: E501
+from metal.rest import ApiException
 
 class TestSpotPricesPerFacility(unittest.TestCase):
     """SpotPricesPerFacility unit test stubs"""
@@ -27,12 +29,41 @@ class TestSpotPricesPerFacility(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test SpotPricesPerFacility
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.spot_prices_per_facility.SpotPricesPerFacility()  # noqa: E501
+        if include_optional :
+            return SpotPricesPerFacility(
+                baremetal_2a = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                    price = 1.337, ), 
+                baremetal_2a2 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                    price = 1.337, ), 
+                baremetal_1 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                    price = 1.337, ), 
+                baremetal_3 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                    price = 1.337, ), 
+                c2_medium_x86 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                    price = 1.337, ), 
+                baremetal_2 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                    price = 1.337, ), 
+                m2_xlarge_x86 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                    price = 1.337, ), 
+                baremetal_s = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                    price = 1.337, ), 
+                baremetal_0 = metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                    price = 1.337, )
+            )
+        else :
+            return SpotPricesPerFacility(
+        )
+
     def testSpotPricesPerFacility(self):
         """Test SpotPricesPerFacility"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SpotPricesPerFacility()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

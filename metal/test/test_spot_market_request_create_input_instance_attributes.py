@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.spot_market_request_create_input_instance_attributes import SpotMarketRequestCreateInputInstanceAttributes
-
+from metal.types.spot_market_request_create_input_instance_attributes import SpotMarketRequestCreateInputInstanceAttributes  # noqa: E501
+from metal.rest import ApiException
 
 class TestSpotMarketRequestCreateInputInstanceAttributes(unittest.TestCase):
     """SpotMarketRequestCreateInputInstanceAttributes unit test stubs"""
@@ -25,12 +29,50 @@ class TestSpotMarketRequestCreateInputInstanceAttributes(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test SpotMarketRequestCreateInputInstanceAttributes
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.spot_market_request_create_input_instance_attributes.SpotMarketRequestCreateInputInstanceAttributes()  # noqa: E501
+        if include_optional :
+            return SpotMarketRequestCreateInputInstanceAttributes(
+                plan = '', 
+                hostname = '', 
+                hostnames = [
+                    ''
+                    ], 
+                description = '', 
+                billing_cycle = '', 
+                operating_system = '', 
+                always_pxe = True, 
+                userdata = '', 
+                locked = True, 
+                termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                tags = [
+                    ''
+                    ], 
+                project_ssh_keys = [
+                    ''
+                    ], 
+                user_ssh_keys = [
+                    ''
+                    ], 
+                features = [
+                    ''
+                    ], 
+                customdata = metal.models.customdata.customdata(), 
+                public_ipv4_subnet_size = 56, 
+                private_ipv4_subnet_size = 56
+            )
+        else :
+            return SpotMarketRequestCreateInputInstanceAttributes(
+        )
+
     def testSpotMarketRequestCreateInputInstanceAttributes(self):
         """Test SpotMarketRequestCreateInputInstanceAttributes"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SpotMarketRequestCreateInputInstanceAttributes()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

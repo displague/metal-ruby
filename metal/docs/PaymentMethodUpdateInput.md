@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **cardholder_name** | **str** |  | [optional] 
 **expiration_month** | **str** |  | [optional] 
 **expiration_year** | **int** |  | [optional] 
-**billing_address** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**billing_address** | **object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

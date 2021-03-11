@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.virtual_network import VirtualNetwork
-globals()['VirtualNetwork'] = VirtualNetwork
-from metal.model.virtual_network_list import VirtualNetworkList
-
+from metal.types.virtual_network_list import VirtualNetworkList  # noqa: E501
+from metal.rest import ApiException
 
 class TestVirtualNetworkList(unittest.TestCase):
     """VirtualNetworkList unit test stubs"""
@@ -27,12 +29,38 @@ class TestVirtualNetworkList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test VirtualNetworkList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.virtual_network_list.VirtualNetworkList()  # noqa: E501
+        if include_optional :
+            return VirtualNetworkList(
+                virtual_networks = [
+                    metal.models.virtual_network.VirtualNetwork(
+                        id = '', 
+                        description = '', 
+                        vxlan = 56, 
+                        facility = metal.models.href.Href(
+                            href = '', ), 
+                        instances = [
+                            metal.models.href.Href(
+                                href = '', )
+                            ], 
+                        assigned_to = metal.models.href.Href(
+                            href = '', ), 
+                        href = '', )
+                    ]
+            )
+        else :
+            return VirtualNetworkList(
+        )
+
     def testVirtualNetworkList(self):
         """Test VirtualNetworkList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = VirtualNetworkList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

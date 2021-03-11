@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **size** | **int** |  | [optional] 
 **locked** | **bool** |  | [optional] 
 **billing_cycle** | **str** | hourly | [optional] 
-**customdata** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**customdata** | **object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

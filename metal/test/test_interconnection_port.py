@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,16 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.href import Href
-from metal.model.virtual_circuit_list import VirtualCircuitList
-globals()['Href'] = Href
-globals()['VirtualCircuitList'] = VirtualCircuitList
-from metal.model.interconnection_port import InterconnectionPort
-
+from metal.types.interconnection_port import InterconnectionPort  # noqa: E501
+from metal.rest import ApiException
 
 class TestInterconnectionPort(unittest.TestCase):
     """InterconnectionPort unit test stubs"""
@@ -29,12 +29,30 @@ class TestInterconnectionPort(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test InterconnectionPort
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.interconnection_port.InterconnectionPort()  # noqa: E501
+        if include_optional :
+            return InterconnectionPort(
+                id = '', 
+                role = '', 
+                status = '', 
+                switch_id = '', 
+                virtual_circuits = metal.models.virtual_circuit_list.VirtualCircuitList(), 
+                organization = metal.models.href.Href(
+                    href = '', )
+            )
+        else :
+            return InterconnectionPort(
+        )
+
     def testInterconnectionPort(self):
         """Test InterconnectionPort"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = InterconnectionPort()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

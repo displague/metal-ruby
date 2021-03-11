@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.device_create_input_ip_addresses import DeviceCreateInputIpAddresses
-globals()['DeviceCreateInputIpAddresses'] = DeviceCreateInputIpAddresses
-from metal.model.device_create_input import DeviceCreateInput
-
+from metal.types.device_create_input import DeviceCreateInput  # noqa: E501
+from metal.rest import ApiException
 
 class TestDeviceCreateInput(unittest.TestCase):
     """DeviceCreateInput unit test stubs"""
@@ -27,12 +29,64 @@ class TestDeviceCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test DeviceCreateInput
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.device_create_input.DeviceCreateInput()  # noqa: E501
+        if include_optional :
+            return DeviceCreateInput(
+                facility = '', 
+                plan = '', 
+                hostname = '', 
+                description = '', 
+                billing_cycle = '', 
+                operating_system = '', 
+                always_pxe = True, 
+                ipxe_script_url = '', 
+                userdata = '', 
+                locked = True, 
+                customdata = None, 
+                hardware_reservation_id = '', 
+                spot_instance = True, 
+                spot_price_max = 1.337, 
+                termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                tags = [
+                    ''
+                    ], 
+                project_ssh_keys = [
+                    ''
+                    ], 
+                user_ssh_keys = [
+                    ''
+                    ], 
+                features = [
+                    ''
+                    ], 
+                public_ipv4_subnet_size = 1.337, 
+                private_ipv4_subnet_size = 1.337, 
+                ip_addresses = [
+                    metal.models.device_create_input_ip_addresses.DeviceCreateInput_ip_addresses(
+                        address_family = 4.0, 
+                        public = False, 
+                        cidr = 28.0, 
+                        ip_reservations = [
+                            ''
+                            ], )
+                    ]
+            )
+        else :
+            return DeviceCreateInput(
+                facility = '',
+                plan = '',
+                operating_system = '',
+        )
+
     def testDeviceCreateInput(self):
         """Test DeviceCreateInput"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeviceCreateInput()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

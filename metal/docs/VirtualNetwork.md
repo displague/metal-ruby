@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **description** | **str** |  | [optional] 
 **vxlan** | **int** |  | [optional] 
 **facility** | [**Href**](Href.md) |  | [optional] 
-**instances** | [**[Href]**](Href.md) |  | [optional] 
+**instances** | [**list[Href]**](Href.md) |  | [optional] 
 **assigned_to** | [**Href**](Href.md) |  | [optional] 
 **href** | **str** |  | [optional] 
 

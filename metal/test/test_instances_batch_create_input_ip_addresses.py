@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,12 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.instances_batch_create_input_ip_addresses import InstancesBatchCreateInputIpAddresses
-
+from metal.types.instances_batch_create_input_ip_addresses import InstancesBatchCreateInputIpAddresses  # noqa: E501
+from metal.rest import ApiException
 
 class TestInstancesBatchCreateInputIpAddresses(unittest.TestCase):
     """InstancesBatchCreateInputIpAddresses unit test stubs"""
@@ -25,12 +29,29 @@ class TestInstancesBatchCreateInputIpAddresses(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test InstancesBatchCreateInputIpAddresses
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.instances_batch_create_input_ip_addresses.InstancesBatchCreateInputIpAddresses()  # noqa: E501
+        if include_optional :
+            return InstancesBatchCreateInputIpAddresses(
+                address_family = 4.0, 
+                public = False, 
+                cidr = 28.0, 
+                ip_reservations = [
+                    ''
+                    ]
+            )
+        else :
+            return InstancesBatchCreateInputIpAddresses(
+        )
+
     def testInstancesBatchCreateInputIpAddresses(self):
         """Test InstancesBatchCreateInputIpAddresses"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = InstancesBatchCreateInputIpAddresses()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

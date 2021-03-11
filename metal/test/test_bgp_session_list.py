@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.bgp_session import BgpSession
-globals()['BgpSession'] = BgpSession
-from metal.model.bgp_session_list import BgpSessionList
-
+from metal.types.bgp_session_list import BgpSessionList  # noqa: E501
+from metal.rest import ApiException
 
 class TestBgpSessionList(unittest.TestCase):
     """BgpSessionList unit test stubs"""
@@ -27,12 +29,36 @@ class TestBgpSessionList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test BgpSessionList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.bgp_session_list.BgpSessionList()  # noqa: E501
+        if include_optional :
+            return BgpSessionList(
+                bgp_sessions = [
+                    metal.models.bgp_session.BgpSession(
+                        id = '', 
+                        status = '', 
+                        learned_routes = [
+                            ''
+                            ], 
+                        address_family = '', 
+                        device = metal.models.href.Href(
+                            href = '', ), 
+                        href = '', 
+                        default_route = True, )
+                    ]
+            )
+        else :
+            return BgpSessionList(
+        )
+
     def testBgpSessionList(self):
         """Test BgpSessionList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = BgpSessionList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,14 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.global_bgp_range import GlobalBgpRange
-globals()['GlobalBgpRange'] = GlobalBgpRange
-from metal.model.global_bgp_range_list import GlobalBgpRangeList
-
+from metal.types.global_bgp_range_list import GlobalBgpRangeList  # noqa: E501
+from metal.rest import ApiException
 
 class TestGlobalBgpRangeList(unittest.TestCase):
     """GlobalBgpRangeList unit test stubs"""
@@ -27,12 +29,30 @@ class TestGlobalBgpRangeList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test GlobalBgpRangeList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.global_bgp_range_list.GlobalBgpRangeList()  # noqa: E501
+        if include_optional :
+            return GlobalBgpRangeList(
+                global_bgp_ranges = [
+                    metal.models.global_bgp_range.GlobalBgpRange(
+                        id = '', 
+                        address_family = 56, 
+                        range = '', 
+                        href = '', )
+                    ]
+            )
+        else :
+            return GlobalBgpRangeList(
+        )
+
     def testGlobalBgpRangeList(self):
         """Test GlobalBgpRangeList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = GlobalBgpRangeList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

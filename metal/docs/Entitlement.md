@@ -5,17 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
-**slug** | **str** |  | 
-**weight** | **int** |  | 
 **description** | **str** |  | [optional] 
+**slug** | **str** |  | 
 **name** | **str** |  | [optional] 
-**instance_quota** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**weight** | **int** |  | 
+**instance_quota** | **object** |  | [optional] 
 **project_quota** | **int** |  | [optional] 
-**volume_quota** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
-**ip_quota** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
-**feature_access** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**volume_quota** | **object** |  | [optional] 
+**ip_quota** | **object** |  | [optional] 
+**feature_access** | **object** |  | [optional] 
 **href** | **str** |  | [optional] 
-**volume_limits** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** |  | [optional] 
+**volume_limits** | **object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

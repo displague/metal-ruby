@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,16 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.entitlement import Entitlement
-from metal.model.meta import Meta
-globals()['Entitlement'] = Entitlement
-globals()['Meta'] = Meta
-from metal.model.entitlement_list import EntitlementList
-
+from metal.types.entitlement_list import EntitlementList  # noqa: E501
+from metal.rest import ApiException
 
 class TestEntitlementList(unittest.TestCase):
     """EntitlementList unit test stubs"""
@@ -29,12 +29,50 @@ class TestEntitlementList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test EntitlementList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.entitlement_list.EntitlementList()  # noqa: E501
+        if include_optional :
+            return EntitlementList(
+                entitlements = [
+                    metal.models.entitlement.Entitlement(
+                        id = '', 
+                        description = '', 
+                        slug = '', 
+                        name = '', 
+                        weight = 56, 
+                        instance_quota = metal.models.instance_quota.instance_quota(), 
+                        project_quota = 56, 
+                        volume_quota = metal.models.volume_quota.volume_quota(), 
+                        ip_quota = metal.models.ip_quota.ip_quota(), 
+                        feature_access = metal.models.feature_access.feature_access(), 
+                        href = '', 
+                        volume_limits = metal.models.volume_limits.volume_limits(), )
+                    ], 
+                meta = metal.models.meta.Meta(
+                    first = metal.models.href.Href(
+                        href = '', ), 
+                    previous = metal.models.href.Href(
+                        href = '', ), 
+                    self = metal.models.href.Href(
+                        href = '', ), 
+                    next = metal.models.href.Href(
+                        href = '', ), 
+                    last = metal.models.href.Href(
+                        href = '', ), 
+                    total = 56, )
+            )
+        else :
+            return EntitlementList(
+        )
+
     def testEntitlementList(self):
         """Test EntitlementList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = EntitlementList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()

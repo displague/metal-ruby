@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **vnid** | **int** |  | [optional] 
 **nni_vlan** | **int** |  | [optional] 
 **speed** | **int** | integer representing bps speed | [optional] 
-**tags** | **[str]** |  | [optional] 
+**tags** | **list[str]** |  | [optional] 
 **project** | [**Href**](Href.md) |  | [optional] 
 **virtual_network** | [**Href**](Href.md) |  | [optional] 
 

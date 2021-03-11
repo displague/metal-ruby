@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **type** | **str** |  | [optional] 
 **redundancy** | **str** |  | [optional] 
 **speed** | **int** | The connection&#39;s speed in bps. | [optional] 
-**tags** | **[str]** |  | [optional] 
-**ports** | [**[InterconnectionPort]**](InterconnectionPort.md) |  | [optional] 
+**tags** | **list[str]** |  | [optional] 
+**ports** | [**list[InterconnectionPort]**](InterconnectionPort.md) |  | [optional] 
 **facility** | [**Href**](Href.md) |  | [optional] 
 **organization** | [**Href**](Href.md) |  | [optional] 
 

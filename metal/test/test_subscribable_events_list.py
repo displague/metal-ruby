@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     Metal API
 
@@ -9,16 +11,14 @@
 """
 
 
-import sys
+from __future__ import absolute_import
+
 import unittest
+import datetime
 
 import metal
-from metal.model.meta import Meta
-from metal.model.subscribable_event import SubscribableEvent
-globals()['Meta'] = Meta
-globals()['SubscribableEvent'] = SubscribableEvent
-from metal.model.subscribable_events_list import SubscribableEventsList
-
+from metal.types.subscribable_events_list import SubscribableEventsList  # noqa: E501
+from metal.rest import ApiException
 
 class TestSubscribableEventsList(unittest.TestCase):
     """SubscribableEventsList unit test stubs"""
@@ -29,12 +29,42 @@ class TestSubscribableEventsList(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def make_instance(self, include_optional):
+        """Test SubscribableEventsList
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # model = metal.models.subscribable_events_list.SubscribableEventsList()  # noqa: E501
+        if include_optional :
+            return SubscribableEventsList(
+                subscribable_events = [
+                    metal.models.subscribable_event.SubscribableEvent(
+                        id = '', 
+                        event_type = '', 
+                        event_name = '', 
+                        event_slug = '', )
+                    ], 
+                meta = metal.models.meta.Meta(
+                    first = metal.models.href.Href(
+                        href = '', ), 
+                    previous = metal.models.href.Href(
+                        href = '', ), 
+                    self = metal.models.href.Href(
+                        href = '', ), 
+                    next = metal.models.href.Href(
+                        href = '', ), 
+                    last = metal.models.href.Href(
+                        href = '', ), 
+                    total = 56, )
+            )
+        else :
+            return SubscribableEventsList(
+        )
+
     def testSubscribableEventsList(self):
         """Test SubscribableEventsList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SubscribableEventsList()  # noqa: E501
-        pass
-
+        inst_req_only = self.make_instance(include_optional=False)
+        inst_req_and_optional = self.make_instance(include_optional=True)
 
 if __name__ == '__main__':
     unittest.main()
