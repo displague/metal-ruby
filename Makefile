@@ -5,10 +5,9 @@ SPEC_FETCHED_FILE:=fetched.openapi.yaml
 SPEC_PATCHED_FILE:=patched.openapi.yaml
 IMAGE=openapitools/openapi-generator-cli
 GIT_ORG=displague
-GIT_REPO=metal-python
+GIT_REPO=metal-ruby
 PACKAGE_NAME=metal
-# python-flask python-legacy python python-aiohttp python-blueplanet
-GENERATOR=python-legacy
+GENERATOR=ruby
 
 SWAGGER=docker run --rm -v $(CURDIR):/local ${IMAGE}
 
